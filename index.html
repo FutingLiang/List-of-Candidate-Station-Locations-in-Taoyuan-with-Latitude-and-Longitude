@@ -93,6 +93,88 @@
             font-weight: 600;
         }
         
+        .format-guide {
+            padding: 40px;
+            background: linear-gradient(145deg, #f0f8ff, #e6f3ff);
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .format-guide h3 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+        
+        .format-guide p {
+            color: #4a5568;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        
+        .format-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .format-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .format-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .format-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #4a5568;
+        }
+        
+        .format-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .format-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .format-example {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        
+        .format-example h4 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .example-data {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .example-data code {
+            color: #2d3748;
+            line-height: 1.6;
+            font-size: 0.9em;
+        }
+        
         .upload-section {
             padding: 40px;
             background: linear-gradient(145deg, #f8f9fa, #e9ecef);
@@ -289,7 +371,9 @@
         }
         
         .map-container {
-            height: 700px;
+            height: 80vh;
+            min-height: 500px;
+            max-height: 800px;
             position: relative;
             background: linear-gradient(145deg, #f0f8ff, #e6f3ff);
             overflow: hidden;
@@ -520,20 +604,8 @@
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <h1>🚌 公車站位地圖視覺化工具</h1>
-                <p>支援 CSV 格式，純 JavaScript 實作，完全免費使用</p>
+                <h1>🚌 桃園公車站位地圖視覺化工具</h1>
             </div>
-        </div>
-        
-        <div class="feature-banner">
-            ✨ 零依賴 • 完全本地運行 • 支援 CSV 格式 • 即時互動 ✨
-        </div>
-        
-        <div class="demo-section">
-            <h3>🎯 快速開始</h3>
-            <p>沒有資料檔案？試試我們的示範資料！</p>
-            <button class="demo-btn" onclick="loadDemoData()">載入示範資料</button>
-            <button class="demo-btn" onclick="downloadTemplate()">下載 CSV 範本</button>
         </div>
         
         <div class="upload-section">
@@ -558,6 +630,72 @@
             
             <div class="error-message" id="errorMessage"></div>
             <div class="success-message" id="successMessage"></div>
+        </div>
+        
+        <div class="format-guide">
+            <h3>📋 Excel 檔案格式說明</h3>
+            <p>請確保您的 Excel 檔案包含以下欄位（欄位名稱需完全一致）：</p>
+            
+            <div class="format-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>欄位名稱</th>
+                            <th>說明</th>
+                            <th>範例資料</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>站位名稱</strong></td>
+                            <td>公車站牌名稱</td>
+                            <td>桃園車站</td>
+                        </tr>
+                        <tr>
+                            <td><strong>行政區</strong></td>
+                            <td>所屬行政區域</td>
+                            <td>桃園區</td>
+                        </tr>
+                        <tr>
+                            <td><strong>經度</strong></td>
+                            <td>GPS經度座標</td>
+                            <td>121.3010</td>
+                        </tr>
+                        <tr>
+                            <td><strong>緯度</strong></td>
+                            <td>GPS緯度座標</td>
+                            <td>24.9937</td>
+                        </tr>
+                        <tr>
+                            <td><strong>上車量</strong></td>
+                            <td>平均每日上車人次</td>
+                            <td>1250</td>
+                        </tr>
+                        <tr>
+                            <td><strong>下車量</strong></td>
+                            <td>平均每日下車人次</td>
+                            <td>1180</td>
+                        </tr>
+                        <tr>
+                            <td><strong>路線數</strong></td>
+                            <td>經過此站的路線數量</td>
+                            <td>8</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="format-example">
+                <h4>📊 資料範例預覽：</h4>
+                <div class="example-data">
+                    <code>
+                        站位名稱 | 行政區 | 經度 | 緯度 | 上車量 | 下車量 | 路線數<br>
+                        桃園車站 | 桃園區 | 121.3010 | 24.9937 | 1250 | 1180 | 8<br>
+                        中壢車站 | 中壢區 | 121.2255 | 24.9530 | 2100 | 2050 | 12<br>
+                        機場捷運A18站 | 桃園區 | 121.3063 | 25.0078 | 890 | 920 | 6
+                    </code>
+                </div>
+            </div>
         </div>
         
         <div class="map-section" id="mapSection">
@@ -767,11 +905,7 @@
             // 檢查 Leaflet 是否載入
             if (typeof L === 'undefined') {
                 console.warn('Leaflet 未載入，使用 Canvas 模式');
-                mapContainer.style.display = 'none';
-                loadingIndicator.innerHTML = '<div style="color: #e53e3e;">⚠️ 地圖庫載入失敗，使用備用模式</div>';
-                setTimeout(() => {
-                    loadingIndicator.style.display = 'none';
-                }, 3000);
+                switchToOfflineMode();
                 return;
             }
 
@@ -783,28 +917,17 @@
                 const taoyuanCenter = [24.9937, 121.3010];
 
                 // 創建地圖
-                map = L.map('googleMap').setView(taoyuanCenter, 11);
+                map = L.map('googleMap', {
+                    center: taoyuanCenter,
+                    zoom: 11,
+                    zoomControl: false, // 我們有自定義縮放控制
+                    attributionControl: true
+                });
 
-                // 使用更快的地圖服務器（多個備選）
-                const tileProviders = [
-                    {
-                        name: 'CartoDB Positron (快速)',
-                        url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-                        attribution: '© OpenStreetMap © CartoDB',
-                        maxZoom: 19
-                    },
-                    {
-                        name: 'OpenStreetMap',
-                        url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                        attribution: '© OpenStreetMap contributors',
-                        maxZoom: 19
-                    }
-                ];
-
-                // 使用更快的 CartoDB 作為主要圖層
-                const tileLayer = L.tileLayer(tileProviders[0].url, {
-                    attribution: tileProviders[0].attribution,
-                    maxZoom: tileProviders[0].maxZoom,
+                // 使用更快的地圖服務器
+                const tileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                    attribution: '© OpenStreetMap © CartoDB',
+                    maxZoom: 19,
                     // 性能優化選項
                     updateWhenIdle: true,
                     updateWhenZooming: false,
@@ -812,62 +935,39 @@
                 });
 
                 // 設置載入超時處理
-                let loadTimeout = setTimeout(() => {
-                    if (loadingIndicator.style.display !== 'none') {
-                        loadingIndicator.innerHTML = `
-                            <div style="color: #f56500; margin-bottom: 10px;">⚠️ 網路載入較慢</div>
-                            <button onclick="switchToOfflineMode()" style="background: #667eea; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; font-family: Microsoft JhengHei;">
-                                切換到快速模式
-                            </button>
-                        `;
-                    }
-                }, 3000); // 3秒後顯示快速模式選項
+                let tileLoadTimeout = setTimeout(() => {
+                    console.warn('地圖瓦片載入超時，切換到快速模式');
+                    switchToOfflineMode();
+                }, 10000);
 
-                // 監聽圖層載入事件
-                tileLayer.on('loading', function() {
-                    loadingIndicator.innerHTML = `
-                        <div style="width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #667eea; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 10px;"></div>
-                        <div style="font-family: Microsoft JhengHei; color: #2d3748; font-size: 14px;">載入地圖圖層...</div>
-                        <div style="font-size: 12px; color: #666; margin-top: 5px;">首次載入可能需要幾秒鐘</div>
-                    `;
+                // 地圖載入完成事件
+                map.whenReady(() => {
+                    clearTimeout(tileLoadTimeout);
+                    loadingIndicator.style.display = 'none';
+                    
+                    // 創建標記群組
+                    markerGroup = L.featureGroup().addTo(map);
+                    
+                    // 隱藏 Canvas（使用 Leaflet 模式）
+                    canvas.style.pointerEvents = 'none';
+                    canvas.style.opacity = '0';
+                    
+                    console.log('Leaflet 地圖載入完成');
                 });
 
-                tileLayer.on('load', function() {
-                    // 地圖載入完成
-                    clearTimeout(loadTimeout);
-                    setTimeout(() => {
-                        loadingIndicator.style.display = 'none';
-                    }, 500);
-                });
-
+                // 添加瓦片圖層
                 tileLayer.addTo(map);
 
-                // 創建標記群組
-                markerGroup = L.layerGroup().addTo(map);
-
-                // 隱藏 Canvas，顯示 Leaflet 地圖
-                canvas.style.display = 'none';
-                
-                // 地圖初始化完成
-                map.whenReady(function() {
-                    console.log('Leaflet 地圖初始化完成');
-                    loadingIndicator.innerHTML = `
-                        <div style="color: #38a169;">✅ 地圖載入完成</div>
-                    `;
-                    setTimeout(() => {
-                        loadingIndicator.style.display = 'none';
-                    }, 1000);
+                // 瓦片載入錯誤處理
+                tileLayer.on('tileerror', () => {
+                    console.warn('地圖瓦片載入錯誤，切換到快速模式');
+                    clearTimeout(tileLoadTimeout);
+                    switchToOfflineMode();
                 });
 
             } catch (error) {
-                console.error('地圖初始化錯誤:', error);
-                loadingIndicator.innerHTML = `
-                    <div style="color: #e53e3e;">❌ 地圖載入失敗</div>
-                    <div style="font-size: 12px; margin-top: 5px;">請檢查網路連線</div>
-                `;
-                setTimeout(() => {
-                    loadingIndicator.style.display = 'none';
-                }, 3000);
+                console.error('Leaflet 地圖初始化失敗:', error);
+                switchToOfflineMode();
             }
         }
 
